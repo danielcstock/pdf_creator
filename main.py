@@ -1,5 +1,5 @@
-from reportlab.pdfgen import canvas
+from PdfGenerator import PdfCanvas
 
-pdf = canvas.Canvas("TESTE_PDF.pdf")
-pdf.drawString(100, 200, "exemplo de pdf.")
-pdf.save()
+pdf = PdfCanvas("TESTE_Laninha.pdf")
+pdf.addImages(["img1.jpeg", "img2.jpeg"])
+pdf.createFile()
