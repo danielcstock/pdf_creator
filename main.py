@@ -1,5 +1,5 @@
 from PdfGenerator import PdfCanvas
 
 pdf = PdfCanvas("test.pdf")
-pdf.addImages(["img1.jpeg", "img2.jpeg"])
+pdf.addImages(["assets/img1.jpeg", "assets/img2.jpeg", "assets/img3.jpeg"])
 pdf.createFile()
