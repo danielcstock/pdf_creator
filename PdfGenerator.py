@@ -1,10 +1,12 @@
 from reportlab.pdfgen import canvas
 
+''' Class based on the reportlab.pdfgen's canvas.
+'''
 class PdfCanvas(object):
     def __init__(self, filename, pagesize=(595.27, 841.89), bottomup=1, pageCompression=0):
         self.canvas = canvas.Canvas(filename, pagesize, bottomup, pageCompression)
 
-    '''
+    ''' Hello world function.
     '''
     def hello(self):
         from reportlab.lib.units import inch
@@ -29,14 +31,14 @@ class PdfCanvas(object):
         self.canvas.drawString(0.3*inch, -inch, "Hello World")
         self.canvas.showPage()
 
-    ''' Prints the page number. It gets a canvas object and the orientations.
+    ''' Prints the page number. It gets the font parameters and the string position.
     '''
-    def setPagination(self, fontSize=9, position="top", side="right"):
-        self.canvas.setFont("Courier", fontSize)
+    def setPagination(self, fontStyle="Courier", fontSize=9, position="top", side="right"):
+        self.canvas.setFont(fontStyle, fontSize)
         index = self.canvas.getPageNumber()
         self.canvas.drawString(580, 5, "{}".format(index))
 
-    '''
+    ''' Adds one image per page.
     '''
     def addImages(self, images, pageSize = (595.27, 841.89)):
         width, height = pageSize
@@ -44,7 +46,9 @@ class PdfCanvas(object):
             self.canvas.drawImage(img, 0, 0, width, height)
             self.setPagination()
             self.canvas.showPage()
-
+    
+    ''' Generate the pdf file on the current directory.
+    '''
     def createFile(self):
         self.canvas.save()
 
