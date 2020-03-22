@@ -36,7 +36,9 @@ class PdfCanvas(object):
     def setPagination(self, fontStyle="Courier", fontSize=9, position="top", side="right"):
         self.canvas.setFont(fontStyle, fontSize)
         index = self.canvas.getPageNumber()
-        self.canvas.drawString(580, 5, "{}".format(index))
+        x = 580 if side == "right" else 5
+        y = 5 if position == "bottom" else 820
+        self.canvas.drawString(x, y, "{}".format(index))
 
     ''' Adds one image per page.
     '''
@@ -44,7 +46,7 @@ class PdfCanvas(object):
         width, height = pageSize
         for img in images:
             self.canvas.drawImage(img, 0, 0, width, height)
-            self.setPagination()
+            self.setPagination(side="right", position="bottom")
             self.canvas.showPage()
     
     ''' Generate the pdf file on the current directory.
